@@ -24,6 +24,8 @@ import (
 	"github.com/go-kit/log"
 	"github.com/go-kit/log/level"
 	"github.com/prometheus/client_golang/prometheus"
+
+	"reflect"
 )
 
 // Namespace defines the common namespace to be used by all metrics.
@@ -163,6 +165,7 @@ func execute(name string, c Collector, ch chan<- prometheus.Metric, logger log.L
 	var success float64
 
 	if err != nil {
+	    level.Warn(c.logger).Log("msg", "collector.go execute error not null","err", err,"error_type",reflect.TypeOf(err))
 		if IsNoDataError(err) {
 			level.Debug(logger).Log("msg", "collector returned no data", "name", name, "duration_seconds", duration.Seconds(), "err", err)
 		} else {

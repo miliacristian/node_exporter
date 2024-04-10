@@ -25,6 +25,8 @@ import (
 	"github.com/go-kit/log/level"
 	"github.com/prometheus/client_golang/prometheus"
 	"github.com/prometheus/procfs/sysfs"
+
+	"reflect"
 )
 
 const coolingDevice = "cooling_device"
@@ -71,12 +73,16 @@ func NewThermalZoneCollector(logger log.Logger) (Collector, error) {
 }
 
 func (c *thermalZoneCollector) Update(ch chan<- prometheus.Metric) error {
+    level.Warn(c.logger).Log("msg","called update function for thermal_zone_linux")
 	thermalZones, err := c.fs.ClassThermalZoneStats()
+	level.Warn(c.logger).Log("msg", "message for thermal zones", "thermalZones", thermalZones)
+	level.Warn(c.logger).Log("msg", "message for print error", "err", err,"error_type",reflect.TypeOf(err))
 	if err != nil {
 		if errors.Is(err, os.ErrNotExist) || errors.Is(err, os.ErrPermission) || errors.Is(err, os.ErrInvalid) {
 			level.Debug(c.logger).Log("msg", "Could not read thermal zone stats", "err", err)
 			return ErrNoData
 		}
+		level.Warn(c.logger).Log("msg", "error for thermalZones not null", "err", err)
 		return err
 	}
 
@@ -92,6 +98,7 @@ func (c *thermalZoneCollector) Update(ch chan<- prometheus.Metric) error {
 
 	coolingDevices, err := c.fs.ClassCoolingDeviceStats()
 	if err != nil {
+	    level.Warn(c.logger).Log("msg", "error for cooling device not null", "err", err,"error_type",reflect.TypeOf(err))
 		return err
 	}
 
