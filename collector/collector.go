@@ -165,7 +165,7 @@ func execute(name string, c Collector, ch chan<- prometheus.Metric, logger log.L
 	var success float64
 
 	if err != nil {
-	    level.Warn(c.logger).Log("msg", "collector.go execute error not null","err", err,"error_type",reflect.TypeOf(err))
+	    level.Warn(logger).Log("msg", "collector.go execute error not null","err", err,"error_type",reflect.TypeOf(err))
 		if IsNoDataError(err) {
 			level.Debug(logger).Log("msg", "collector returned no data", "name", name, "duration_seconds", duration.Seconds(), "err", err)
 		} else {
