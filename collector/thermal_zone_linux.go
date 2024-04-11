@@ -27,6 +27,7 @@ import (
 	"github.com/prometheus/procfs/sysfs"
 
 	"reflect"
+	"io/fs"
 )
 
 const coolingDevice = "cooling_device"
@@ -81,6 +82,10 @@ func (c *thermalZoneCollector) Update(ch chan<- prometheus.Metric) error {
 		if errors.Is(err, os.ErrNotExist) || errors.Is(err, os.ErrPermission) || errors.Is(err, os.ErrInvalid) {
 			level.Debug(c.logger).Log("msg", "Could not read thermal zone stats", "err", err)
 			return ErrNoData
+		}
+		if errors.As(err, new(*fs.PathError)){
+		    level.Warn(c.logger).Log("msg", "error match fs.PathError", "err", err)
+		    return ErrNoData
 		}
 		level.Warn(c.logger).Log("msg", "error for thermalZones not null", "err", err)
 		return err
