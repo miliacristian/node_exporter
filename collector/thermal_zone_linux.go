@@ -78,7 +78,7 @@ func (c *thermalZoneCollector) Update(ch chan<- prometheus.Metric) error {
 	thermalZones, err := c.fs.ClassThermalZoneStats()
 	level.Warn(c.logger).Log("msg", "message for thermal zones", "thermalZones", thermalZones)
 	level.Warn(c.logger).Log("msg", "message for print error", "err", err,"error_type",reflect.TypeOf(err))
-	if err != nil {
+	if err != nil && !(errors.As(err, new(*fs.PathError))){
 		if errors.Is(err, os.ErrNotExist) || errors.Is(err, os.ErrPermission) || errors.Is(err, os.ErrInvalid) {
 			level.Debug(c.logger).Log("msg", "Could not read thermal zone stats", "err", err)
 			return ErrNoData
