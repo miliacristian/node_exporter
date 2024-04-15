@@ -20,6 +20,7 @@ require (
 	github.com/mdlayher/ethtool v0.1.0
 	github.com/mdlayher/netlink v1.7.2
 	github.com/mdlayher/wifi v0.1.0
+	github.com/miliacristian/procfs v1.0.4
 	github.com/opencontainers/selinux v1.11.0
 	github.com/prometheus-community/go-runit v0.1.0
 	github.com/prometheus/client_golang v1.19.0
@@ -27,7 +28,6 @@ require (
 	github.com/prometheus/common v0.48.0
 	github.com/prometheus/exporter-toolkit v0.11.0
 	github.com/prometheus/procfs v0.13.0
-	github.com/miliacristian/procfs v1.0.4
 	github.com/safchain/ethtool v0.3.0
 	golang.org/x/exp v0.0.0-20230522175609-2e198f4a06a1
 	golang.org/x/sys v0.18.0
