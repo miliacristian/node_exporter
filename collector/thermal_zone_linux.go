@@ -24,7 +24,7 @@ import (
 	"github.com/go-kit/log"
 	"github.com/go-kit/log/level"
 	"github.com/prometheus/client_golang/prometheus"
-	"github.com/prometheus/procfs/sysfs"
+	"github.com/miliacristian/procfs/sysfs"
 
 	"reflect"
 	"io/fs"
