@@ -28,6 +28,7 @@ import (
 
 
 	"io/fs"
+	"reflect"
 )
 
 const coolingDevice = "cooling_device"
