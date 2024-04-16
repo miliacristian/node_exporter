@@ -26,7 +26,7 @@ import (
 	"github.com/prometheus/client_golang/prometheus"
 	"github.com/miliacristian/procfs/sysfs"
 
-	"reflect"
+
 	"io/fs"
 )
 
