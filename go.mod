@@ -20,7 +20,7 @@ require (
 	github.com/mdlayher/ethtool v0.1.0
 	github.com/mdlayher/netlink v1.7.2
 	github.com/mdlayher/wifi v0.1.0
-	github.com/miliacristian/procfs v1.0.12
+	github.com/miliacristian/procfs v1.0.13
 	github.com/opencontainers/selinux v1.11.0
 	github.com/prometheus-community/go-runit v0.1.0
 	github.com/prometheus/client_golang v1.19.0
